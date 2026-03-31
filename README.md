@@ -8,7 +8,6 @@
 [![Flask](https://img.shields.io/badge/Flask-3.0+-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
 [![License](https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge)](LICENSE)
 [![Yahoo Finance](https://img.shields.io/badge/API-Yahoo%20Finance-720e9e?style=for-the-badge)](https://finance.yahoo.com)
-[![Tests](https://img.shields.io/badge/Testes-Pytest-009688?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org)
 
 Acompanhe ações e criptomoedas em tempo real direto do terminal ou do navegador. Visualize preços, gráficos históricos e salve dados localmente — sem precisar de API key.
 
@@ -144,9 +143,6 @@ stock-dashboard/
 │       │   └── style.css      # Design system (dark mode, glassmorphism)
 │       └── js/
 │           └── app.js         # Lógica do frontend (Chart.js, watchlist)
-├── tests/                     # Testes automatizados
-│   ├── test_fetcher.py        # Testes do módulo fetcher (15 testes)
-│   └── test_storage.py        # Testes do módulo storage (10 testes)
 ├── data/                      # Armazenamento local de CSV (ignorado no git)
 │   └── .gitkeep
 ├── requirements.txt           # Dependências do Python
@@ -168,22 +164,6 @@ O servidor Flask expõe os seguintes endpoints:
 | `GET`    | `/api/watchlist/suggestions`    | Sugestões de tickers populares                  |
 | `POST`   | `/api/multi-quote`              | Busca de cotações em lote                       |
 
-## 🧪 Executando os Testes
-
-```bash
-# Executar todos os testes
-pytest
-
-# Executar com saída detalhada
-pytest -v
-
-# Executar com relatório de cobertura
-pytest --cov=stock_dashboard --cov-report=term-missing
-
-# Executar um arquivo de teste específico
-pytest tests/test_fetcher.py -v
-```
-
 ## 🛠️ Stack Tecnológica
 
 | Tecnologia                                         | Finalidade                        |
@@ -195,14 +175,6 @@ pytest tests/test_fetcher.py -v
 | [pandas](https://pandas.pydata.org)                | Manipulação de dados e CSV        |
 | [Flask](https://flask.palletsprojects.com)         | Servidor web e API REST           |
 | [Chart.js](https://www.chartjs.org)                | Gráficos interativos no navegador |
-| [pytest](https://pytest.org)                       | Framework de testes               |
-
-## 🔒 Segurança
-
-- ✅ **Nenhuma chave de API necessária** — usa o yfinance (API pública do Yahoo Finance)
-- ✅ **Sem dados sensíveis** — nenhum segredo ou credencial armazenado no código
-- ✅ **Dados locais apenas** — os CSVs são salvos localmente e ignorados pelo Git
-- ✅ **.gitignore robusto** — exclui venv, .env, _.pem, _.key, caches e logs
 
 ## 🤝 Contribuindo
 

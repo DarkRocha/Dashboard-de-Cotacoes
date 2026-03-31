@@ -45,7 +45,8 @@ data/*.csv
 secrets.json
 config.local.*
 
-# Pytest
+# Pytest / Testes
+tests/
 .pytest_cache/
 htmlcov/
 .coverage
