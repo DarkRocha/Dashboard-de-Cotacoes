@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stock Dashboard — Acompanhe cotações de ações e criptomoedas em tempo real com gráficos interativos.">
+    <title>Stock Dashboard — Real-Time Financial Quotes</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- ─── Header ──────────────────────────────────────── -->
+        <header class="header" id="header">
+            <div class="header-brand">
+                <div class="header-logo">📈</div>
+                <div>
+                    <div class="header-title">Stock Dashboard</div>
+                    <div class="header-subtitle">Real-Time Financial Quotes</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="header-time" id="headerTime">
+                    <span class="status-dot"></span>Loading...
+                </div>
+            </div>
+        </header>
+
+        <!-- ─── Search ──────────────────────────────────────── -->
+        <section class="search-section" id="searchSection">
+            <div class="search-container">
+                <input
+                    type="text"
+                    class="search-input"
+                    id="searchInput"
+                    placeholder="Buscar ativo... (ex: AAPL, BTC, PETR4)"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <span class="search-icon">⌕</span>
+                <button class="search-btn" id="searchBtn">Buscar</button>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+
+            <div class="quick-tags">
+                <span class="quick-tag" data-symbol="AAPL">AAPL</span>
+                <span class="quick-tag" data-symbol="MSFT">MSFT</span>
+                <span class="quick-tag" data-symbol="NVDA">NVDA</span>
+                <span class="quick-tag" data-symbol="GOOGL">GOOGL</span>
+                <span class="quick-tag" data-symbol="TSLA">TSLA</span>
+                <span class="quick-tag" data-symbol="BTC">BTC</span>
+                <span class="quick-tag" data-symbol="ETH">ETH</span>
+                <span class="quick-tag" data-symbol="PETR4">PETR4</span>
+                <span class="quick-tag" data-symbol="VALE3">VALE3</span>
+                <span class="quick-tag" data-symbol="ITUB4">ITUB4</span>
+            </div>
+        </section>
+
+        <!-- ─── Watchlist ───────────────────────────────────── -->
+        <section class="watchlist-section" id="watchlistSection">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">⚡</span> Watchlist
+                </h2>
+                <span class="section-badge" id="watchlistBadge">0</span>
+            </div>
+            <div class="watchlist-grid" id="watchlistGrid">
+                <!-- Cards dinâmicos -->
+            </div>
+        </section>
+
+        <!-- ─── Chart ───────────────────────────────────────── -->
+        <section class="chart-section" id="chartSection">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <div class="chart-title-group">
+                        <span class="chart-symbol" id="chartSymbol">—</span>
+                        <span class="chart-price-live" id="chartPriceLive"></span>
+                        <span class="chart-change-live" id="chartChangeLive"></span>
+                    </div>
+                    <div class="chart-period-tabs">
+                        <button class="chart-period-tab" data-days="7">7D</button>
+                        <button class="chart-period-tab active" data-days="30">30D</button>
+                        <button class="chart-period-tab" data-days="90">90D</button>
+                        <button class="chart-period-tab" data-days="180">6M</button>
+                        <button class="chart-period-tab" data-days="365">1Y</button>
+                    </div>
+                </div>
+
+                <div class="chart-canvas-wrapper" id="chartCanvasWrapper">
+                    <div class="chart-empty">
+                        <div class="chart-empty-icon">📊</div>
+                        <div class="chart-empty-text">Selecione um ativo</div>
+                        <div class="chart-empty-hint">Clique em um card da watchlist para ver o gráfico detalhado</div>
+                    </div>
+                </div>
+
+                <!-- Volume -->
+                <div class="volume-chart-wrapper" id="volumeChartWrapper"></div>
+
+                <!-- Stats -->
+                <div class="chart-stats" id="chartStats"></div>
+            </div>
+        </section>
+
+        <!-- ─── Saved Data ──────────────────────────────────── -->
+        <section class="saved-section" id="savedSection">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">💾</span> Dados Salvos
+                </h2>
+            </div>
+            <div class="data-table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Arquivo</th>
+                            <th>Registros</th>
+                            <th>Tamanho</th>
+                            <th>Última Atualização</th>
+                        </tr>
+                    </thead>
+                    <tbody id="savedTableBody">
+                        <tr>
+                            <td class="table-empty" colspan="5">Carregando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ─── Footer ──────────────────────────────────────── -->
+        <footer class="footer">
+            <p>Stock Dashboard v1.0.0 · Powered by <a href="https://finance.yahoo.com" target="_blank" rel="noopener">Yahoo Finance</a></p>
+            <p style="margin-top: 4px;">Built with Python, Flask & Chart.js</p>
+        </footer>
+
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- App script -->
+    <script src="/js/app.js"></script>
+</body>
+</html>
