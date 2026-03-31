@@ -176,16 +176,6 @@ O servidor Flask expõe os seguintes endpoints:
 | [Flask](https://flask.palletsprojects.com)         | Servidor web e API REST           |
 | [Chart.js](https://www.chartjs.org)                | Gráficos interativos no navegador |
 
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fazer fork do repositório
-2. Criar uma branch para sua feature (`git checkout -b feature/minha-feature`)
-3. Fazer commit das mudanças (`git commit -m 'Adiciona minha feature'`)
-4. Fazer push para a branch (`git push origin feature/minha-feature`)
-5. Abrir um Pull Request
-
 ## 📄 Licença
 
 Este projeto está licenciado sob a Licença MIT — veja o arquivo [LICENSE](LICENSE) para detalhes.
