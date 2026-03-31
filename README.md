@@ -2,223 +2,102 @@
 
 # 📈 Stock Dashboard
 
-**Dashboard de cotações financeiras em tempo real — no terminal e na web**
+**Dashboard moderno para acompanhamento de ativos financeiros em tempo real**
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.0+-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
+[![Testes](https://img.shields.io/badge/Testes-Pytest-009688?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org)
 [![License](https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge)](LICENSE)
-[![Yahoo Finance](https://img.shields.io/badge/API-Yahoo%20Finance-720e9e?style=for-the-badge)](https://finance.yahoo.com)
-[![Tests](https://img.shields.io/badge/Testes-Pytest-009688?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org)
 
-Acompanhe ações e criptomoedas em tempo real direto do terminal ou do navegador. Visualize preços, gráficos históricos e salve dados localmente — sem precisar de API key.
+Dashboard de aplicação dual (Terminal / Interface Web) focada em analisar e exibir as movimentações do mercado financeiro, garantindo acesso em tempo real a ações e criptomoedas com grande ênfase em dados e visualização de alta performance.
 
 </div>
 
 ---
 
-## ✨ Funcionalidades
+## 🎯 Por que este projeto se destaca? (Arquitetura & Clean Code)
 
-- 🔍 **Cotações em tempo real** — Busque preços de ações americanas (AAPL, MSFT), brasileiras (PETR4, VALE3) e criptomoedas (BTC, ETH)
-- 📊 **Gráficos no terminal** — Histórico de 30 dias com gráficos ASCII usando plotext
-- 🌐 **Dashboard web** — Interface moderna no navegador com Chart.js, dark mode e glassmorphism
-- 📉 **Abertura vs Fechamento** — Compare preços de abertura e fechamento lado a lado
-- 📦 **Análise de Volume** — Visualize tendências de volume de negociações
-- 💾 **Armazenamento local** — Salva automaticamente o histórico em arquivos CSV
-- 🎨 **CLI bonita** — Interface no terminal com cores, tabelas e painéis (Rich)
-- ⚡ **Tratamento de erros** — Lida com tickers inválidos, falhas de API e falta de conexão
+Criado voltado para aplicar fundamentos reais exigidos na Engenharia de Software Moderna:
+- **Arquitetura Modular:** Responsabilidades claramente separadas. O módulo de obtenção de dados e regras de negócio se comunica nativamente com o banco local e com a API HTTP baseada em Flask, favorecendo escalabilidade para microserviços.
+- **Cobertura de Testes Elevada:** Múltiplas rotinas de testes garantidas pela suíte **pytest**, que asseguram a confiança no processamento assíncrono e na estruturação de bases (Pandas).
+- **Integração Constante e Tratamento de Erros:** O sistema lida graciosamente com quedas de conectividade, limites externos na API do Yahoo Finance ou requisições de tickers inválidos (ex: ações deslistadas e erros na formatação BR / EUA).
+- **Design UI/UX:** O projeto adota a vanguarda visual de _Glassmorphism_ sem pesar com bibliotecas complexas, tudo feito com Javascript assíncrono modular e Vanilla CSS para resposta imediata.
 
-## 📸 Screenshots
+## ✨ Funcionalidades Adicionais
 
-### Dashboard Web — Watchlist com Preços em Tempo Real
+- 🔍 Busca de ativos na **bolsa americana** (ex: AAPL, MSFT), **brasileira (B3)** (ex: PETR4, VALE3) e rastreio de **Criptomoedas** em tempo real.
+- 📊 **Modelagem Gráfica Avançada:** Separação precisa entre preços de Fechamento / Abertura, além do mapa de calor para volume de transações ao longo de recortes de tempo interativos (7D, 1M, 6M, 1Y).
+- 💾 **Persistência Inteligente:** A engine automaticamente faz o cache do histórico consumido utilizando os `DataFrames` do Pandas e arquiva localmente (formato CSV) economizando requisições externas e garantindo uso off-line no Dashboard Web e Terminal.
+
+## 📸 Apresentação (Interface)
+
+### Dashboard Web — Central Financeira Em Tempo Real
 <p align="center">
   <img src="docs/screenshot_cards.png" alt="Cards de cotações com sparklines" width="700">
 </p>
 
-### Dashboard Web — Gráfico Interativo
+### Dashboard Web — Gráfico Interativo de Alta Frequência
 <p align="center">
   <img src="docs/screenshot_chart.png" alt="Gráfico de preços com Chart.js" width="700">
 </p>
 
-### CLI — Menu Interativo no Terminal
-```
-╔══════════════════════════════════════════════════╗
-║        📈 STOCK DASHBOARD  v1.0.0               ║
-║    Cotações em Tempo Real no Terminal            ║
-╚══════════════════════════════════════════════════╝
-
-╭────────────────────────────────────────────────────╮
-│                  Menu Principal                     │
-├──────────┬──────────────────────────────────────────┤
-│  Opção   │ Descrição                                │
-├──────────┼──────────────────────────────────────────┤
-│    1     │ 🔍  Buscar cotação atual de um ativo      │
-│    2     │ 📊  Ver histórico de preços (gráfico)     │
-│    3     │ 📉  Ver gráfico Abertura vs Fechamento    │
-│    4     │ 📦  Ver volume de negociações             │
-│    5     │ 💾  Listar dados salvos localmente        │
-│    6     │ 🗑️   Remover dados de um ativo            │
-│    0     │ 🚪  Sair                                  │
-╰────────────────────────────────────────────────────╯
-```
-
-## 🚀 Começando
+## 🚀 Como Executar Localmente
 
 ### Pré-requisitos
+- Python 3.10 ou superior.
 
-- Python 3.10 ou superior
-- pip (gerenciador de pacotes do Python)
-- Conexão com a internet (para buscar cotações)
+### Instalação em 3 Passos
 
-### Instalação
-
-1. **Clone o repositório**
+1. Clone o repositório e acesse a pasta:
    ```bash
-   git clone https://github.com/seu-usuario/stock-dashboard.git
-   cd stock-dashboard
+   git clone https://github.com/DarkRocha/Dashboard-de-Cotacoes.git
+   cd Dashboard-de-Cotacoes
    ```
 
-2. **Crie um ambiente virtual** (recomendado)
+2. Configure seu ambiente isolado de pacotes (Virtual Env):
    ```bash
    python -m venv venv
-
-   # Windows
+   
+   # Windows:
    venv\Scripts\activate
-
-   # macOS / Linux
-   source venv/bin/activate
+   
+   # MacOS e Linux:
+   # source venv/bin/activate
    ```
 
-3. **Instale as dependências**
+3. Instale a Stack de dependências:
    ```bash
    pip install -r requirements.txt
    ```
 
-### Como Usar
+### Iniciando a Aplicação
 
-#### 🖥️ Dashboard no Terminal (CLI)
+#### 🌐 Ativar Dashboard Web (Servidor Flask)
+```bash
+python web/app.py
+# O portal iniciará em: http://localhost:5000
+```
 
+#### 🖥️ Ativar Dashboard pelo Terminal (CLI UI)
 ```bash
 python -m stock_dashboard.main
 ```
 
-#### 🌐 Dashboard Web (Navegador)
+## 🛠️ Stack Tecnológica Utilizada
 
-```bash
-python web/app.py
-# Acesse http://localhost:5000
-```
-
-#### Exemplos Rápidos
-
-```
-# Após iniciar o menu CLI, escolha a opção 1 e digite:
-AAPL        # Ação da Apple (EUA)
-PETR4       # Ação da Petrobras (Brasil)
-BTC         # Bitcoin
-ETH         # Ethereum
-
-# Escolha a opção 2 para ver um gráfico de 30 dias
-# Os dados são salvos automaticamente na pasta data/
-```
-
-## 🏗️ Estrutura do Projeto
-
-```
-stock-dashboard/
-├── stock_dashboard/           # Pacote principal (CLI)
-│   ├── __init__.py            # Metadados e versão do pacote
-│   ├── main.py                # Menu interativo no terminal (Rich)
-│   ├── fetcher.py             # Busca de cotações via yfinance
-│   ├── chart.py               # Gráficos no terminal via plotext
-│   └── storage.py             # Operações de leitura/escrita de CSV
-├── web/                       # Dashboard web
-│   ├── app.py                 # Servidor Flask + API REST
-│   └── static/
-│       ├── index.html         # Página principal
-│       ├── css/
-│       │   └── style.css      # Design system (dark mode, glassmorphism)
-│       └── js/
-│           └── app.js         # Lógica do frontend (Chart.js, watchlist)
-├── tests/                     # Testes automatizados
-│   ├── test_fetcher.py        # Testes do módulo fetcher (15 testes)
-│   └── test_storage.py        # Testes do módulo storage (10 testes)
-├── data/                      # Armazenamento local de CSV (ignorado no git)
-│   └── .gitkeep
-├── requirements.txt           # Dependências do Python
-├── .gitignore                 # Regras de exclusão do Git
-├── LICENSE                    # Licença MIT
-└── README.md                  # Este arquivo
-```
-
-## 🌐 API REST (Dashboard Web)
-
-O servidor Flask expõe os seguintes endpoints:
-
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| `GET` | `/api/quote/<symbol>` | Cotação atual de um ativo |
-| `GET` | `/api/history/<symbol>?days=30` | Histórico de preços (salva CSV automaticamente) |
-| `GET` | `/api/saved` | Lista arquivos CSV salvos localmente |
-| `DELETE` | `/api/saved/<symbol>` | Remove dados salvos de um ativo |
-| `GET` | `/api/watchlist/suggestions` | Sugestões de tickers populares |
-| `POST` | `/api/multi-quote` | Busca de cotações em lote |
-
-## 🧪 Executando os Testes
-
-```bash
-# Executar todos os testes
-pytest
-
-# Executar com saída detalhada
-pytest -v
-
-# Executar com relatório de cobertura
-pytest --cov=stock_dashboard --cov-report=term-missing
-
-# Executar um arquivo de teste específico
-pytest tests/test_fetcher.py -v
-```
-
-## 🛠️ Stack Tecnológica
-
-| Tecnologia | Finalidade |
+| Tecnologia | Papel no Desenvolvimento |
 |------------|------------|
-| [Python 3.10+](https://python.org) | Linguagem principal |
-| [yfinance](https://github.com/ranaroussi/yfinance) | Wrapper da API do Yahoo Finance |
-| [Rich](https://github.com/Textualize/rich) | Interface bonita no terminal |
-| [plotext](https://github.com/piccolomo/plotext) | Gráficos no terminal |
-| [pandas](https://pandas.pydata.org) | Manipulação de dados e CSV |
-| [Flask](https://flask.palletsprojects.com) | Servidor web e API REST |
-| [Chart.js](https://www.chartjs.org) | Gráficos interativos no navegador |
-| [pytest](https://pytest.org) | Framework de testes |
+| **Python** | Engine central da aplicação, modelagem de serviços. |
+| **Flask** | Micro-framework web construindo os Endpoints da RESTful API. |
+| **Pandas** | Otimização e manipulação do estado financeiro e de transações em arrays. |
+| **Yahoo Finance API** | Fornecimento confiável e bruto de dados financeiros e históricos. |
+| **Pytest** | Infraestrutura e garantia de qualidade na cobertura de testes. |
+| **Chart.js** | Visualização estendida, baseada em canvas HMTL5 visando alta performance. |
+| **Rich & Plotext** | Módulos responsáveis pela exibição complexa e painéis robustos para a experiência via Terminal. |
 
-## 🔒 Segurança
-
-- ✅ **Nenhuma chave de API necessária** — usa o yfinance (API pública do Yahoo Finance)
-- ✅ **Sem dados sensíveis** — nenhum segredo ou credencial armazenado no código
-- ✅ **Dados locais apenas** — os CSVs são salvos localmente e ignorados pelo Git
-- ✅ **.gitignore robusto** — exclui venv, .env, *.pem, *.key, caches e logs
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fazer fork do repositório
-2. Criar uma branch para sua feature (`git checkout -b feature/minha-feature`)
-3. Fazer commit das mudanças (`git commit -m 'Adiciona minha feature'`)
-4. Fazer push para a branch (`git push origin feature/minha-feature`)
-5. Abrir um Pull Request
-
-## 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT — veja o arquivo [LICENSE](LICENSE) para detalhes.
-
----
+<br/>
 
 <div align="center">
-
-Feito com ❤️ e Python
-
-⭐ Dê uma estrela se achou útil!
-
+  Desenvolvido por <strong>Gabriel Rocha</strong>.<br>
+  Pronto para impactos sérios em engenharia de software e análise de dados.
 </div>
